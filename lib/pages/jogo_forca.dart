@@ -33,23 +33,26 @@ class _JogoForcaState extends State<JogoForca> {
     showDialog(
       context: context,
       builder:
-          (context) => AlertDialog(
-            title: const Text('Fim de Jogo'),
-            content: const Text(
-              'Você atingiu o limite de erros. O jogo será reiniciado.',
-            ),
-            actions: [
-              TextButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                  setState(() {
-                    letrasCorretas.clear();
-                    letrasErradas.clear();
-                  });
-                },
-                child: const Text('OK'),
+          (context) => PopScope(
+            canPop: false,
+            child: AlertDialog(
+              title: const Text('Fim de Jogo'),
+              content: const Text(
+                'Você atingiu o limite de erros. O jogo será reiniciado.',
               ),
-            ],
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                    setState(() {
+                      letrasCorretas.clear();
+                      letrasErradas.clear();
+                    });
+                  },
+                  child: const Text('OK'),
+                ),
+              ],
+            ),
           ),
     );
   }
